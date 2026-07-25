@@ -588,7 +588,7 @@ with center_col:
                 df_raw = None
             else:
                 st.success(f"got {len(df_raw):,} letters ready to sort! ♡")
-                st.dataframe(df_raw.head(3), use_container_width=True)
+                st.dataframe(df_raw.head(3), width='stretch')
 
     with tab_id:
         st.write("")
@@ -606,7 +606,7 @@ with center_col:
         if n_fetch == MAX_FETCH:
             st.caption(f"that's the max we can fetch!")
 
-        if st.button("fetch reviews!", use_container_width=True) and app_id:
+        if st.button("fetch reviews!", width='stretch') and app_id:
             with st.spinner("heading to the Play Store... back in a moment! ˘ᵕ˘"):
                 try:
                     from google_play_scraper import reviews, Sort
@@ -616,7 +616,7 @@ with center_col:
                     )
                     df_raw = pd.DataFrame(result)[["content", "score", "at"]]
                     st.success(f"picked up {len(df_raw):,} letters! let's take a peek ✿")
-                    st.dataframe(df_raw.head(3), use_container_width=True)
+                    st.dataframe(df_raw.head(3), width='stretch')
                     st.session_state["df_raw"] = df_raw
                 except Exception as e:
                     st.error(f"hmm, something went wrong: {e}")
@@ -633,7 +633,7 @@ if df_raw is None and "df_result" not in st.session_state:
 if df_raw is not None:
     st.write("")
     with centered():
-        if st.button("run analysis", type="primary", use_container_width=True):
+        if st.button("run analysis", type="primary", width='stretch'):
             df_result = run_pipeline(df_raw, DEFAULT_THRESH)
             st.session_state["df_result"] = df_result
             st.session_state.pop("pdf_bytes", None)
@@ -676,7 +676,7 @@ if "df_result" in st.session_state:
                            height=380, margin=dict(l=0, r=10, t=10, b=10),
                            plot_bgcolor="#FDFAF6", paper_bgcolor="#FDFAF6",
                            font=dict(family="Nunito", color="#5C3D2E"))
-        st.plotly_chart(fig1, use_container_width=True)
+        st.plotly_chart(fig1, width='stretch')
 
     with col_r:
         st.subheader("Sentiment per Topic")
@@ -688,7 +688,7 @@ if "df_result" in st.session_state:
                            margin=dict(l=0, r=10, t=10, b=80),
                            plot_bgcolor="#FDFAF6", paper_bgcolor="#FDFAF6",
                            font=dict(family="Nunito", color="#5C3D2E"))
-        st.plotly_chart(fig2, use_container_width=True)
+        st.plotly_chart(fig2, width='stretch')
 
 
 
@@ -748,7 +748,7 @@ if "df_result" in st.session_state:
             data=csv_out,
             file_name="cozy_analysis_results.csv",
             mime="text/csv",
-            use_container_width=True,
+            width='stretch',
         )
         st.caption("all reviews with topics, sentiments, and confidence scores")
 
@@ -773,7 +773,7 @@ if "df_result" in st.session_state:
                 data=pdf_bytes,
                 file_name="cozy_analysis_report.pdf",
                 mime="application/pdf",
-                use_container_width=True,
+                width='stretch',
             )
             st.caption("summary report with topic breakdown and sample reviews")
 
