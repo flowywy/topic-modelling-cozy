@@ -1,0 +1,17 @@
+streamlit>= 1.57.0
+bertopic>=0.16.0
+sentence-transformers>=2.7.0
+huggingface-hub>=0.23.0
+umap-learn>=0.5.6
+hdbscan>=0.8.33
+plotly>=5.20.0
+pandas>=2.0.0
+openpyxl>=3.1.2
+spacy>=3.7.0
+langdetect>=1.0.9
+google-play-scraper>=1.2.7
+nltk>=3.8.1
+scikit-learn>=1.4.0
+torch>=2.0.0
+torchvision>=0.15.0
+fpdf2>=2.7.9
